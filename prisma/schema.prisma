@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id_user  Int    @id @default(autoincrement())
+    username String @unique
+    password String
+}
+
+model Negara {
+    id_negara   String      @id
+    nama_negara String
+    Kerjasama   Kerjasama[]
+}
+
+model Mitra {
+    id_counterpart   Int         @id @default(autoincrement())
+    nama_counterpart String
+    Kerjasama        Kerjasama[]
+}
+
+model Status {
+    id_status_naskah Int         @id @default(autoincrement())
+    nama_status      String
+    Kerjasama        Kerjasama[]
+}
+
+model Kerjasama {
+    id_kerjasama       Int       @id @default(autoincrement())
+    id_negara          String
+    id_mitra           Int
+    id_status          Int
+    judul_kerjasama    String
+    satuan_kerja       String?
+    topik              String?
+    tanggal_pengesahan DateTime?
+    keterangan         String?
+
+    Negara   Negara    @relation(fields: [id_negara], references: [id_negara])
+    Mitra    Mitra     @relation(fields: [id_mitra], references: [id_counterpart])
+    Status   Status    @relation(fields: [id_status], references: [id_status_naskah])
+    Dokumens Dokumen[]
+}
+
+model Dokumen {
+    id_dokumen   Int    @id @default(autoincrement())
+    id_kerjasama Int
+    nama_file    String
+    file_path    String
+
+    Kerjasama Kerjasama @relation(fields: [id_kerjasama], references: [id_kerjasama], onDelete: Cascade)
+}
