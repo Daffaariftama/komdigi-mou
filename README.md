@@ -2,7 +2,9 @@
 
 **Bridge Komdigi** adalah aplikasi manajemen kerja sama internasional yang dikembangkan untuk Kementerian Komunikasi dan Digital (Komdigi). Aplikasi ini memudahkan pengelolaan, pemantauan, dan pengarsipan dokumen perjanjian kerja sama (MoU/Perjanjian) antara Indonesia dan mitra global.
 
-![Komdigi Logo](/komdigi-logo.png)
+![Komdigi Logo](public/komdigi-logo.png)
+
+![App Screenshot](public/app-screenshot.png)
 
 ## Fitur Utama
 
